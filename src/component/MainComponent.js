@@ -1,7 +1,8 @@
 import { Navbar, NavbarBrand } from 'reactstrap';
 import Menu from '~/component/MenuComponent';
 import React, { Component } from 'react';
-import { DISHES } from './shared/dishes';
+import { DISHES } from '../shared/dishes';
+import DishDetail from './DishDetail';
 
 class Main extends Component {
     constructor(props) {
@@ -26,6 +27,7 @@ class Main extends Component {
                     </div>
                 </Navbar>
                 <Menu onClick={(dishId) => this.onDishSelect(dishId)} dishes={this.state.dishes} />
+                <DishDetail dish={this.state.dishes.filter((dish) => dish.id === this.state.selectedDish)} />
             </div>
         );
     }

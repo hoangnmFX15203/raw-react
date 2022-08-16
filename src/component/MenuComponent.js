@@ -9,13 +9,15 @@ class Menu extends Component {
     renderDish(dish) {
         if (dish != null) {
             return (
-                <Card>
-                    <CardImg width="100%" object src={dish.image} alt={dish.name} />
-                    <CardBody>
-                        <CardTitle>{dish.name}</CardTitle>
-                        <CardText>{dish.description}</CardText>
-                    </CardBody>
-                </Card>
+                <div key={dish.id} className="col-12 col-md-5 m-1">
+                    <Card onClick={() => this.props.onClick(dish.id)}>
+                        <CardImg width="100%" object src={dish.image} alt={dish.name} />
+                        <CardBody>
+                            <CardTitle>{dish.name}</CardTitle>
+                            <CardText>{dish.description}</CardText>
+                        </CardBody>
+                    </Card>
+                </div>
             );
         } else {
             return <div></div>;
@@ -40,7 +42,7 @@ class Menu extends Component {
         return (
             <div className="container">
                 <div className="row">{menu}</div>
-                <div className="row">{this.renderDish(this.state.selectedDish)}</div>
+                {/* <div className="row">{this.renderDish(this.state.selectedDish)}</div> */}
             </div>
         );
     }
