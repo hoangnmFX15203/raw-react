@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 
 function DishDetail(props) {
     const [dishes, setDishes] = useState([]);
-    console.log(dishes);
 
     useEffect(() => {
         setDishes(props.dish);
@@ -14,9 +13,15 @@ function DishDetail(props) {
         <>
             {dishes.map((dish) => {
                 return (
-                    <div className="container">
+                    <div className="container col-12 col-md-5 m-1">
                         <Card>
                             <CardImg width="100px" object src={dish.image} alt={dish.name} />
+                            <div className="dish-details">
+                                <p>{dish.name}</p>
+                                <p>{dish.description}</p>
+                                <p>{dish.price}</p>
+                                <p>{dish.comment}</p>
+                            </div>
                         </Card>
                     </div>
                 );
