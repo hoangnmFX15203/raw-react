@@ -10,6 +10,7 @@ import Home from './HomeComponent';
 import { Route, Routes, useParams } from 'react-router-dom';
 import Contact from './ContactComponent';
 import DishDetail from './DishDetail';
+import About from './AboutComponent';
 
 class Main extends Component {
     constructor(props) {
@@ -42,10 +43,13 @@ class Main extends Component {
         const DishWithId = ({ match }) => {
             const { dishId } = useParams();
             const commentList = this.state.comments.filter((comment) => comment.dishId === +dishId);
-            console.log(commentList);
             return (
                 <DishDetail dish={this.state.dishes.filter((dish) => dish.id === +dishId)[0]} comments={commentList} />
             );
+        };
+
+        const RenderAbout = () => {
+            return <About leaders={this.state.leaders.filter((leader) => leader.featured === true)} />;
         };
         return (
             <div>
@@ -53,8 +57,9 @@ class Main extends Component {
                 <Routes>
                     <Route path="/home" element={<Homepage />} />
                     <Route exact path="/menu" element={<Menu dishes={this.state.dishes} />} />
-                    <Route path="menu/:dishId" element={<DishWithId />} />
+                    <Route path="/menu/:dishId" element={<DishWithId />} />
                     <Route exact path="/contactus" element={<Contact />} />
+                    <Route path="/aboutus" element={<RenderAbout />} />
                 </Routes>
                 {/* <Redirect to="/home" /> */}
 
